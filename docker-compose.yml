@@ -4,7 +4,6 @@ services:
   # -------------------------------------------------------
   postgres:
     image: postgres:16
-    container_name: n8n_postgres
     restart: unless-stopped
     environment:
       - POSTGRES_USER=n8n
@@ -23,7 +22,6 @@ services:
   # -------------------------------------------------------
   app_postgres:
     image: postgres:16
-    container_name: app_postgres
     restart: unless-stopped
     environment:
       - POSTGRES_USER=${APP_POSTGRES_USER}
@@ -47,7 +45,6 @@ services:
   # -------------------------------------------------------
   n8n:
     image: docker.n8n.io/n8nio/n8n:stable
-    container_name: n8n
     restart: unless-stopped
     ports:
       # Accès direct : http://{IP_VM}:5678
@@ -86,7 +83,6 @@ services:
   # -------------------------------------------------------
   cloudbeaver:
     image: dbeaver/cloudbeaver:latest
-    container_name: cloudbeaver
     restart: unless-stopped
     ports:
       # Accès direct : http://{IP_VM}:8978
@@ -98,10 +94,13 @@ services:
         condition: service_healthy
 
 volumes:
+  # Volumes n8n RENOMMÉS (v2) → démarrage propre avec la nouvelle clé de chiffrement.
+  # Les anciens (n8n_data / n8n_postgres_data) restent orphelins, à nettoyer plus tard.
   n8n_data:
-    name: n8n_data
+    name: n8n_data_v2
   postgres_data:
-    name: n8n_postgres_data
+    name: n8n_postgres_data_v2
+  # Inchangés
   app_postgres_data:
     name: app_postgres_data
   cloudbeaver_data:
