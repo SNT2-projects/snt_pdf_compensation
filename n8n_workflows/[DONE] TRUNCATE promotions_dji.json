@@ -1,0 +1,63 @@
+{
+  "name": "[DONE] TRUNCATE promotions_dji",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "e55f2fb2-55aa-4a05-a052-18d70c90586f",
+      "name": "When called by another workflow"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "TRUNCATE TABLE promotions_dji;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        208,
+        0
+      ],
+      "id": "1f770762-fc4f-4899-98cb-528d5dbec151",
+      "name": "TRUNCATE promotions_dji",
+      "credentials": {
+        "postgres": {
+          "id": "Ht1HaZp8aRxyD7ok",
+          "name": "Postgres account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When called by another workflow": {
+      "main": [
+        [
+          {
+            "node": "TRUNCATE promotions_dji",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "17849192-2717-498e-84e8-493987914eeb",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7ba3ab14852dbb702a48496a98bc933d084ef27980f5ff171a5b9db8c19b65fe"
+  },
+  "id": "cYcayn1lWmMRHIBt",
+  "tags": []
+}
