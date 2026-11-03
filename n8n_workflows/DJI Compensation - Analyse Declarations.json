@@ -8,20 +8,14 @@
         "genericAuthType": "httpBearerAuth",
         "options": {}
       },
-      "id": "42398efc-ece4-422d-81b1-5ef5375eff79",
+      "id": "20a17462-1ffa-49f6-9294-67e98bbff2a0",
       "name": "GET Declarations to Process",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -4752,
-        208
-      ],
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "bEuh4fskH2iIinfO",
-          "name": "Prod Presta API Key"
-        }
-      }
+        -448,
+        96
+      ]
     },
     {
       "parameters": {
@@ -47,13 +41,13 @@
         },
         "options": {}
       },
-      "id": "eac5db4a-a29f-435b-8fc4-cfd9d435def6",
+      "id": "97727ea1-6ea2-4811-b38a-4227201218af",
       "name": "Has Declarations?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -4528,
-        208
+        -224,
+        96
       ]
     },
     {
@@ -61,13 +55,13 @@
         "fieldToSplitOut": "declarations",
         "options": {}
       },
-      "id": "a1513bfc-0a36-47eb-be54-b1f1c8ddc5bf",
+      "id": "de63ca54-eb2b-4fcc-9527-8b9a50c03455",
       "name": "Split Declarations",
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -4304,
-        112
+        0,
+        0
       ]
     },
     {
@@ -77,32 +71,26 @@
         "genericAuthType": "httpBearerAuth",
         "options": {}
       },
-      "id": "d7d521c5-253d-4819-ad59-e9ef207677b4",
+      "id": "77bfac05-7301-4edc-83a7-da9f48354b42",
       "name": "GET Declaration XLSX",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -4096,
-        112
-      ],
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "bEuh4fskH2iIinfO",
-          "name": "Prod Presta API Key"
-        }
-      }
+        208,
+        0
+      ]
     },
     {
       "parameters": {
         "jsCode": "// Transformer les lignes declarees pour INSERT PostgreSQL\nconst input = $input.first().json;\nconst declaredLines = input.declared_lines || [];\n\nif (declaredLines.length === 0) {\n  return [];\n}\n\nconst result = declaredLines.map(line => ({\n  json: {\n    id_declaration: input.id_declaration,\n    id_customer: input.id_customer,\n    reference_article: line.reference_article,\n    produit: line.produit,\n    ean: line.ean,\n    quantite_declaree: line.quantite_declaree,\n    prix_vente_ttc: line.prix_vente_ttc,\n    prix_promo_ttc: line.prix_promo_ttc,\n    compensation_ht: line.compensation_ht,\n    montant_avoir: line.montant_avoir,\n    date_debut: line.date_debut,\n    date_fin: line.date_fin,\n    date_butoir: line.date_butoir,\n    numero_serie: line.numero_serie,\n    reference_avoir: line.reference_avoir\n  }\n}));\n\nreturn result;"
       },
-      "id": "d85a407f-e125-433b-8ff7-54e38b74b1b0",
+      "id": "9482fc13-7392-4bc2-9198-c982c3ee6864",
       "name": "Transform Declaration Lines",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3872,
-        112
+        432,
+        0
       ]
     },
     {
@@ -496,20 +484,14 @@
         },
         "options": {}
       },
-      "id": "e21a33d8-12d6-4086-ad9d-ecd439a111a9",
+      "id": "5c7981f4-cd57-486e-8b5b-bfb2a7202b0d",
       "name": "INSERT Declaration Lignes",
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -3648,
-        112
-      ],
-      "credentials": {
-        "postgres": {
-          "id": "Ht1HaZp8aRxyD7ok",
-          "name": "Postgres account"
-        }
-      }
+        656,
+        0
+      ]
     },
     {
       "parameters": {
@@ -518,33 +500,27 @@
         "genericAuthType": "httpBearerAuth",
         "options": {}
       },
-      "id": "a99b6a82-5232-4121-98b1-6d33aeece89d",
+      "id": "e72e0cf1-6552-489a-a771-6f808452cb25",
       "name": "GET Invoices URLs",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -3424,
-        112
-      ],
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "bEuh4fskH2iIinfO",
-          "name": "Prod Presta API Key"
-        }
-      }
+        880,
+        0
+      ]
     },
     {
       "parameters": {
         "fieldToSplitOut": "invoices",
         "options": {}
       },
-      "id": "bf5b4fd6-82db-4f34-9efa-8f1e6ec72cc7",
+      "id": "7005f80b-a2de-4286-90a7-a1042f062cba",
       "name": "Split Invoices",
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
       "position": [
-        -3216,
-        112
+        1088,
+        0
       ]
     },
     {
@@ -566,34 +542,28 @@
           "timeout": 120000
         }
       },
-      "id": "b2525078-9f2f-49e2-ac18-bffd47715607",
+      "id": "f7744e85-b8bb-4f64-a8b9-5199bf6c5f52",
       "name": "Mistral Analyse Facture",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        -4048,
-        400
+        256,
+        288
       ],
       "executeOnce": false,
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "oGIz9jJoRkv5R4Z9",
-          "name": "Mistral API Key"
-        }
-      },
       "notes": "Timeout 2min car OCR peut etre long"
     },
     {
       "parameters": {
         "jsCode": "const items = $input.all();\nconst results = [];                \nfor (let i = 0; i < items.length; i++) {\n  const mistralResponse = items[i].json;\n  const invoice = $('Split Invoices').all()[i]?.json || {};\n\n  let parsed;\n  try {\n    const content = mistralResponse.choices[0].message.content;\n    parsed = typeof content === 'string' ? JSON.parse(content) : content;\n  } catch (e) {\n    results.push({\n      json: {\n        error: 'Parse error',\n        id_invoice: invoice.id_invoice,\n        raw: mistralResponse.choices?.[0]?.message?.content || 'No content'\n      }\n    });\n    continue;\n  }\n\n  results.push({\n    json: {\n      id_invoice: invoice.id_invoice,\n      id_declaration: $('GET Declaration XLSX').first().json.id_declaration,\n      s3_key: invoice.s3_key,\n      numero_facture: parsed.numero_facture,\n      date_facture: parsed.date_facture,\n      total_ttc: parsed.total_ttc,\n      raw_response: JSON.stringify(parsed),\n      lignes: parsed.lignes || []\n    }\n  });\n}\n\nreturn results;"
       },
-      "id": "e748c808-ad6b-4dda-baed-f9b0794b631d",
+      "id": "c545e447-76d3-4743-ba3e-4872ee8f1846",
       "name": "Parse Mistral Response",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3808,
-        400
+        496,
+        288
       ]
     },
     {
@@ -794,32 +764,26 @@
         },
         "options": {}
       },
-      "id": "62d36ca2-0952-4605-8205-825fc0596abb",
+      "id": "b803ac84-d22b-48d5-a37f-c940bc89c0ed",
       "name": "INSERT Facture Analysee",
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -3552,
-        400
-      ],
-      "credentials": {
-        "postgres": {
-          "id": "Ht1HaZp8aRxyD7ok",
-          "name": "Postgres account"
-        }
-      }
+        752,
+        288
+      ]
     },
     {
       "parameters": {
         "jsCode": "const results = [];\nfor (const item of $input.all()) {\n    const factureId = item.json.id;\n    const lignes = item.json.raw_response?.lignes || [];\n\n    for (const ligne of lignes) {\n      // Ignorer les remises (prix négatif)\n      if (ligne.prix_unitaire_ttc < 0) continue;\n\n      results.push({\n        json: {\n          id_facture_analysee: factureId,\n          reference_article: ligne.reference || null,\n          ean: ligne.ean || null,\n          numero_serie: ligne.numero_serie || null,\n          designation: ligne.designation || null,\n          quantite: ligne.quantite || 1,\n          prix_unitaire_ttc: ligne.prix_unitaire_ttc || 0\n        }\n      });\n    }\n  }\n\n  return results;"
       },
-      "id": "ec81a453-b7f3-4ca2-aaf8-bc1fef63dfdc",
+      "id": "ab064439-c196-41b7-a1c4-a1449f37b4a6",
       "name": "Prepare Facture Produits",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3344,
-        400
+        960,
+        288
       ]
     },
     {
@@ -1007,20 +971,14 @@
         },
         "options": {}
       },
-      "id": "c8ee6c5e-471a-4824-b588-6d7e0c53ebf6",
+      "id": "6098e7a5-7c26-4ce7-a279-a8a983ee9235",
       "name": "INSERT Facture Produits",
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -3088,
-        400
-      ],
-      "credentials": {
-        "postgres": {
-          "id": "Ht1HaZp8aRxyD7ok",
-          "name": "Postgres account"
-        }
-      }
+        1216,
+        288
+      ]
     },
     {
       "parameters": {
@@ -1030,21 +988,15 @@
           "queryReplacement": "={{ $('GET Declaration XLSX').first().json.id_declaration }}"
         }
       },
-      "id": "c859a3fa-a6c0-404c-9e0c-101c84509c00",
+      "id": "0b1a9a98-c32e-4ea0-b607-3d1cc9b815ba",
       "name": "GET Declaration Lignes",
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -2816,
-        400
+        1488,
+        288
       ],
-      "executeOnce": true,
-      "credentials": {
-        "postgres": {
-          "id": "Ht1HaZp8aRxyD7ok",
-          "name": "Postgres account"
-        }
-      }
+      "executeOnce": true
     },
     {
       "parameters": {
@@ -1054,21 +1006,15 @@
           "queryReplacement": "={{ $('GET Declaration XLSX').first().json.id_declaration }}"
         }
       },
-      "id": "e1c2574c-73c5-4abe-9bb6-a144950a9009",
+      "id": "94fcde8e-1c60-4662-ba04-0fdf1c55e2fc",
       "name": "GET Factures Produits",
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -2544,
-        400
+        1760,
+        288
       ],
-      "executeOnce": true,
-      "credentials": {
-        "postgres": {
-          "id": "Ht1HaZp8aRxyD7ok",
-          "name": "Postgres account"
-        }
-      }
+      "executeOnce": true
     },
     {
       "parameters": {
@@ -1076,33 +1022,27 @@
         "query": "SELECT * FROM promotions_dji",
         "options": {}
       },
-      "id": "f4a730de-40c7-4a9e-8b62-87e04a63567f",
+      "id": "a4e7c9be-6600-4035-a90d-d56121ae9e0b",
       "name": "GET Promotions DJI",
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -4048,
-        736
+        256,
+        624
       ],
-      "executeOnce": true,
-      "credentials": {
-        "postgres": {
-          "id": "Ht1HaZp8aRxyD7ok",
-          "name": "Postgres account"
-        }
-      }
+      "executeOnce": true
     },
     {
       "parameters": {
         "jsCode": "const TOLERANCE_PRIX = 5.00;                                                                  \n   \nconst declarationLignes = $('GET Declaration Lignes').all();                                  \nconst facturesProduits = $('GET Factures Produits').all();\nconst promotions = $('GET Promotions DJI').all();\nconst idDeclaration = $('GET Declaration XLSX').first().json.id_declaration;\n\nconst resultats = [];  // Toutes les lignes (OK + anomalies)\n\n// Index des produits facturés\nconst factures = facturesProduits.map(p => p.json);\n\n// Index des promotions par EAN et par référence\nconst promosByEan = {};\nconst promosByRef = {};\nconst promosByName = [];\n\nfor (const promo of promotions) {\n  const p = promo.json;\n  if (p.ean) promosByEan[p.ean.trim()] = p;\n  if (p.reference_article) promosByRef[p.reference_article.toUpperCase().trim()] = p;\n  promosByName.push({\n    name: (p.produit || '').toUpperCase(),\n    promo: p\n  });\n}\n\n// Fonction de match partiel (au moins 2 mots en commun)\nfunction matchPartiel(designation, promosName) {\n  const words = designation.toUpperCase().replace(/[^A-Z0-9\\s]/g, '').split(/\\s+/).filter(w =>\n w.length > 2);\n  let bestMatch = null;\n  let bestScore = 0;\n\n  for (const item of promosName) {\n    const promoWords = item.name.replace(/[^A-Z0-9\\s]/g, '').split(/\\s+/).filter(w => w.length\n > 2);\n    const common = words.filter(w => promoWords.some(pw => pw.includes(w) || w.includes(pw)));\n    const score = common.length;\n\n    if (score >= 2 && score > bestScore) {\n      bestScore = score;\n      bestMatch = item.promo;\n    }\n  }\n  return bestMatch;\n}\n\n// Fonction pour trouver une promo : EAN > Référence > Nom partiel\nfunction findPromo(ligne) {\n  // 1. Match EAN\n  if (ligne.ean && promosByEan[ligne.ean.trim()]) {\n    return { promo: promosByEan[ligne.ean.trim()], method: 'ean' };\n  }\n\n  // 2. Match Référence\n  const ref = (ligne.reference_article || ligne.reference || '').toUpperCase().trim();\n  if (ref && promosByRef[ref]) {\n    return { promo: promosByRef[ref], method: 'reference' };\n  }\n\n  // 3. Match partiel désignation\n  const designation = ligne.designation || ligne.produit || '';\n  if (designation) {\n    const match = matchPartiel(designation, promosByName);\n    if (match) {\n      return { promo: match, method: 'designation_partielle' };\n    }\n  }\n\n  return null;\n}\n\n// Agréger les quantités facturées par produit matchable\nconst factureAggregated = {};\n\nfor (const f of factures) {\n  if (f.quantite <= 0 || f.prix_unitaire_ttc < 0) continue; // Ignorer remises\n\n  const match = findPromo(f);\n  if (match) {\n    const key = match.promo.reference_article.toUpperCase().trim();\n    if (!factureAggregated[key]) {\n      factureAggregated[key] = {\n        quantite: 0,\n        prix_unitaire: parseFloat(f.prix_unitaire_ttc) || 0,\n        promo: match.promo,\n        method: match.method\n      };\n    }\n    factureAggregated[key].quantite += f.quantite;\n  }\n}\n\n// Vérifier chaque ligne déclarée\nfor (const ligne of declarationLignes) {\n  const l = ligne.json;\n  const ref = (l.reference_article || '').toUpperCase().trim();\n  if (!ref) continue;\n\n  const qteDeclaree = l.quantite_declaree || 0;\n  const facture = factureAggregated[ref];\n  const promo = promosByRef[ref];\n\n  // 1. Article déclaré non trouvé dans les factures\n  if (!facture) {\n    resultats.push({\n      json: {\n        id_declaration: idDeclaration,\n        reference_article: ref,\n        type_anomalie: 'article_non_facture',\n        quantite_declaree: qteDeclaree,\n        quantite_facturee: 0,\n        prix_facture: null,\n        prix_promo: promo ? parseFloat(promo.nouveau_prix_ttc) : null,\n        ecart_prix: null,\n        message: `Article ${ref} déclaré (${qteDeclaree} unités) non trouvé dans les factures`\n      }\n    });\n    continue;\n  }\n\n  let hasAnomaly = false;\n\n  // 2. Écart de quantité\n  if (facture.quantite !== qteDeclaree) {\n    hasAnomaly = true;\n    resultats.push({\n      json: {\n        id_declaration: idDeclaration,\n        reference_article: ref,\n        type_anomalie: 'quantite_mismatch',\n        quantite_declaree: qteDeclaree,\n        quantite_facturee: facture.quantite,\n        prix_facture: facture.prix_unitaire,\n        prix_promo: promo ? parseFloat(promo.nouveau_prix_ttc) : null,\n        ecart_prix: null,\n        message: `Qté déclarée (${qteDeclaree}) ≠ facturée (${facture.quantite}) [match:\n${facture.method}]`\n      }\n    });\n  }\n\n  // 3. Écart de prix vs promo (tolérance 5€)\n  if (promo && facture.prix_unitaire !== null) {\n    const prixPromo = parseFloat(promo.nouveau_prix_ttc) || 0;\n    const prixFacture = parseFloat(facture.prix_unitaire) || 0;\n    const ecart = Math.abs(prixFacture - prixPromo);\n\n    if (ecart > TOLERANCE_PRIX) {\n      hasAnomaly = true;\n      resultats.push({\n        json: {\n          id_declaration: idDeclaration,\n          reference_article: ref,\n          type_anomalie: 'prix_mismatch',\n          quantite_declaree: qteDeclaree,\n          quantite_facturee: facture.quantite,\n          prix_facture: prixFacture,\n          prix_promo: prixPromo,\n          ecart_prix: parseFloat(ecart.toFixed(2)),\n          message: `Prix facture (${prixFacture}€) ≠ promo (${prixPromo}€), écart\n${ecart.toFixed(2)}€`\n        }\n      });\n    }\n  }\n\n  // 4. Si aucune anomalie → ligne OK\n  if (!hasAnomaly) {\n    const prixFacture = facture.prix_unitaire ? parseFloat(facture.prix_unitaire) : null;\n    const prixPromo = promo ? parseFloat(promo.nouveau_prix_ttc) : null;\n\n    resultats.push({\n      json: {\n        id_declaration: idDeclaration,\n        reference_article: ref,\n        type_anomalie: 'ok',\n        quantite_declaree: qteDeclaree,\n        quantite_facturee: facture.quantite,\n        prix_facture: prixFacture,\n        prix_promo: prixPromo,\n        ecart_prix: prixFacture && prixPromo ? parseFloat(Math.abs(prixFacture -\nprixPromo).toFixed(2)) : null,\n        message: `Article ${ref} vérifié OK [match: ${facture.method}]`\n      }\n    });\n  }\n}\n\nreturn resultats;"
       },
-      "id": "5443da47-8b16-433a-a5ce-6932988bf4f5",
+      "id": "89107512-b9d6-4aff-a288-c40ec33f14f1",
       "name": "Verify Anomalies",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -3808,
-        736
+        496,
+        624
       ]
     },
     {
@@ -1129,13 +1069,13 @@
         },
         "options": {}
       },
-      "id": "14e9fd2c-ba43-487f-9bfc-e2fe340aaa98",
+      "id": "dd771cb9-28bf-43b7-a7af-958d17b6a436",
       "name": "Has Anomalies?",
       "type": "n8n-nodes-base.if",
       "typeVersion": 2,
       "position": [
-        -3584,
-        736
+        720,
+        624
       ]
     },
     {
@@ -1440,41 +1380,35 @@
         },
         "options": {}
       },
-      "id": "f5e4bbc3-51c0-4c7e-b040-80e31b302de0",
+      "id": "89a28cc9-5feb-46e7-b942-3c736dd90f7f",
       "name": "INSERT Anomalies",
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.5,
       "position": [
-        -3376,
-        624
-      ],
-      "credentials": {
-        "postgres": {
-          "id": "Ht1HaZp8aRxyD7ok",
-          "name": "Postgres account"
-        }
-      }
-    },
-    {
-      "parameters": {},
-      "id": "4bac4656-7c36-4df7-91d8-e2cdba05cad6",
-      "name": "No Anomalies - Done",
-      "type": "n8n-nodes-base.noOp",
-      "typeVersion": 1,
-      "position": [
-        -3376,
-        832
+        928,
+        512
       ]
     },
     {
       "parameters": {},
-      "id": "85418ca0-8b8e-4300-88be-c1cfb1205a46",
+      "id": "b9d3f5d1-19fb-41bb-bb32-5aea01cd8760",
+      "name": "No Anomalies - Done",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        928,
+        720
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "65769afa-c331-49b4-9602-1c9a4f0f9c99",
       "name": "No Declarations",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [
-        -4304,
-        304
+        0,
+        192
       ]
     },
     {
@@ -1482,10 +1416,10 @@
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
       "position": [
-        -4992,
-        208
+        -688,
+        96
       ],
-      "id": "ce96e466-d965-4063-8e2e-46263d034003",
+      "id": "fafe99ec-e8c5-4e8d-b5c5-2361b5888c07",
       "name": "When clicking ‘Execute workflow’"
     },
     {
@@ -1495,10 +1429,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2960,
-        112
+        1344,
+        0
       ],
-      "id": "763ff86e-d997-491a-8e43-b0e509aa900b",
+      "id": "5dfb4bc1-e395-4329-a76b-6b7e191e76c9",
       "name": "Remove Duplicates"
     },
     {
@@ -1508,10 +1442,10 @@
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [
-        -2704,
-        112
+        1600,
+        0
       ],
-      "id": "a88be0d1-8ce6-43b2-b354-fd6045dcb6b1",
+      "id": "583b06de-f41f-4332-a097-2bfa9286f3ee",
       "name": "Prepare Mistral Request"
     },
     {
@@ -1533,17 +1467,11 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.4,
       "position": [
-        -3152,
-        720
+        1152,
+        608
       ],
-      "id": "4c860030-28a2-4131-8b57-797b2726ce3a",
-      "name": "Change PS declaration status",
-      "credentials": {
-        "httpBearerAuth": {
-          "id": "bEuh4fskH2iIinfO",
-          "name": "Prod Presta API Key"
-        }
-      }
+      "id": "3c6ab206-d3d1-4087-8aa5-1e82243b46ca",
+      "name": "Change PS declaration status"
     }
   ],
   "pinData": {},
@@ -1821,24 +1749,29 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "d93ea4af-1a5a-432c-85e7-b21a79c13901",
+  "versionId": "5944e177-ee8b-4656-8db8-5c07258fa7f6",
   "meta": {
-    "templateCredsSetupCompleted": true,
-    "instanceId": "7ba3ab14852dbb702a48496a98bc933d084ef27980f5ff171a5b9db8c19b65fe"
+    "instanceId": "10abab15e1cddf9784b936b459605c273cea23a2036f073d0ae4b8f7b6e309cf"
   },
-  "id": "1Ys9FzC1UAUgWmjY",
+  "id": "ERlvFneDd8nqTgZ0",
   "tags": [
     {
-      "updatedAt": "2026-04-27T09:31:46.072Z",
-      "createdAt": "2026-04-27T09:31:46.072Z",
-      "id": "naN5gKTmEZzACjYL",
+      "updatedAt": "2026-09-18T09:23:47.011Z",
+      "createdAt": "2026-09-18T09:23:47.011Z",
+      "id": "tXEjEo637KxTyflX",
       "name": "DJI"
     },
     {
-      "updatedAt": "2026-04-27T09:31:46.028Z",
-      "createdAt": "2026-04-27T09:31:46.028Z",
-      "id": "0oY0o4TY9zDrEpZB",
+      "updatedAt": "2026-09-18T09:23:47.016Z",
+      "createdAt": "2026-09-18T09:23:47.016Z",
+      "id": "VKddMxFcFf4gRxrq",
       "name": "Compensation"
+    },
+    {
+      "updatedAt": "2026-09-18T09:31:42.181Z",
+      "createdAt": "2026-09-18T09:31:42.181Z",
+      "id": "u96MW6PMsCCpTxuL",
+      "name": "WIP"
     }
   ]
 }

@@ -9,7 +9,7 @@
         0,
         0
       ],
-      "id": "ef41e9ec-539b-4965-b1d1-fe87604005ca",
+      "id": "309c5db1-0104-4cbc-a52f-0bf10c1694bf",
       "name": "When clicking ‘Execute workflow’"
     },
     {
@@ -25,12 +25,12 @@
         208,
         0
       ],
-      "id": "58a79a42-c5d1-4fed-86f4-f8e3acd8c28a",
+      "id": "8b49cb33-488d-4705-8d97-2cbcfdaa33de",
       "name": "HTTP Request",
       "credentials": {
         "httpBearerAuth": {
-          "id": "bEuh4fskH2iIinfO",
-          "name": "Prod Presta API Key"
+          "id": "Qaxzkse7L04xyZ8I",
+          "name": "Module API Token"
         }
       }
     },
@@ -190,12 +190,12 @@
         416,
         0
       ],
-      "id": "7cbecc83-4dc9-426f-9510-7dd822ba8d92",
+      "id": "b6f07df7-7586-4028-8998-89ea1aa2d977",
       "name": "Insert or update rows in a table",
       "credentials": {
         "postgres": {
-          "id": "Ht1HaZp8aRxyD7ok",
-          "name": "Postgres account"
+          "id": "S4K1CxlHRmNEsUuM",
+          "name": "APP Metier Postgres"
         }
       }
     }
@@ -230,11 +230,18 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "c170c2e3-da2d-4efa-a5e4-a70ec3089d62",
+  "versionId": "3e7a322c-247f-433a-93de-b6ea1d442620",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "7ba3ab14852dbb702a48496a98bc933d084ef27980f5ff171a5b9db8c19b65fe"
+    "instanceId": "10abab15e1cddf9784b936b459605c273cea23a2036f073d0ae4b8f7b6e309cf"
   },
-  "id": "sCojvpG1O55TByxw",
-  "tags": []
+  "id": "S5LUr5OtOEIB8IoT",
+  "tags": [
+    {
+      "updatedAt": "2026-09-18T09:32:00.573Z",
+      "createdAt": "2026-09-18T09:32:00.573Z",
+      "id": "IWSq4SNcCWnU6q48",
+      "name": "DONE"
+    }
+  ]
 }

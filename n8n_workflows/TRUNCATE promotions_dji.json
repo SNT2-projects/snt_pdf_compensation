@@ -1,5 +1,5 @@
 {
-  "name": "[DONE] TRUNCATE promotions_dji",
+  "name": "TRUNCATE promotions_dji",
   "nodes": [
     {
       "parameters": {},
@@ -9,7 +9,7 @@
         0,
         0
       ],
-      "id": "e55f2fb2-55aa-4a05-a052-18d70c90586f",
+      "id": "b30795b7-430c-419d-a6e6-ec7b4fd85894",
       "name": "When called by another workflow"
     },
     {
@@ -24,12 +24,12 @@
         208,
         0
       ],
-      "id": "1f770762-fc4f-4899-98cb-528d5dbec151",
+      "id": "55e3ba7d-e03c-4f5a-b7a6-c8400415a1c3",
       "name": "TRUNCATE promotions_dji",
       "credentials": {
         "postgres": {
-          "id": "Ht1HaZp8aRxyD7ok",
-          "name": "Postgres account"
+          "id": "S4K1CxlHRmNEsUuM",
+          "name": "APP Metier Postgres"
         }
       }
     }
@@ -53,11 +53,18 @@
     "executionOrder": "v1",
     "binaryMode": "separate"
   },
-  "versionId": "17849192-2717-498e-84e8-493987914eeb",
+  "versionId": "5d7dbb32-2f36-4778-9b20-ddc702d95b36",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "7ba3ab14852dbb702a48496a98bc933d084ef27980f5ff171a5b9db8c19b65fe"
+    "instanceId": "10abab15e1cddf9784b936b459605c273cea23a2036f073d0ae4b8f7b6e309cf"
   },
-  "id": "cYcayn1lWmMRHIBt",
-  "tags": []
+  "id": "hMzNLueMEI6wDoko",
+  "tags": [
+    {
+      "updatedAt": "2026-09-18T09:32:00.573Z",
+      "createdAt": "2026-09-18T09:32:00.573Z",
+      "id": "IWSq4SNcCWnU6q48",
+      "name": "DONE"
+    }
+  ]
 }
